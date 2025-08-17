@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: fact__retail__sales_data
+    description: A fact table containing transactional sales data.
+    columns:
+      - name: invoice_id
+        description: The unique identifier for each invoice. This is part of the unique key for the table.
+        tests:
+          - not_null
+      - name: stock_id
+        description: A foreign key linking to the dim_product table. This is also part of the unique key for the table.
+        tests:
+          - not_null
+      - name: customer_id
+        description: A foreign key linking to the dim_customer table. 'unknown' if the original ID was blank.
+        tests:
+          - not_null
+      - name: invoice_datetime
+        description: The date and time of the transaction.
+        tests:
+          - not_null
+      - name: product_quantity
+        description: The number of items sold in the transaction. Can be a negative value for returns.
+        tests:
+          - not_null
+      - name: is_return
+        description: A flag (0 or 1) indicating if the transaction is a return.
+        tests:
+          - not_null
+      - name: product_price
+        description: The price per unit of the product at the time of the transaction.
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_amount
+        description: The total amount for the line item (quantity * price).
+        tests:
+          - not_null

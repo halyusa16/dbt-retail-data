@@ -1,0 +1,34 @@
+name: 'dbt_retail'
+version: '1.0.0'
+
+# Must match your profiles.yml
+profile: 'dbt_retail'
+
+# Paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Default model configs
+models:
+  dbt_retail:
+    staging_layer:
+      +project: sound-chalice-349712
+      +dataset: staging_data
+      +persist_docs:
+        relation: true   # persist table descriptions
+        columns: true    # persist column descriptions
+    warehouse_layer:
+      +project: sound-chalice-349712
+      +dataset: warehouse_data
+      +persist_docs:
+        relation: true
+        columns: true
+

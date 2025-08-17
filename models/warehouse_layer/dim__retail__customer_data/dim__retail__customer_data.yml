@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: dim__retail__customer_data
+    description: A dimension table containing unique customer data.
+    columns:
+      - name: customer_id
+        description: The unique identifier for a customer (primary key).
+        tests:
+          - unique
+          - not_null
+      - name: customer_country
+        description: The country of the customer.

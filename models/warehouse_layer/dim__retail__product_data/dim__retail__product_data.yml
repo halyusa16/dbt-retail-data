@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: dim__retail__product_data
+    description: A dimension table containing product information.
+    columns:
+      - name: stock_id
+        description: The unique identifier for a product (primary key).
+        tests:
+          - unique
+          - not_null
+      - name: product_description
+        description: A human-readable description of the product.

@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: halyusa_data
+    schema: halyusa_data        # your dataset in BigQuery
+    tables:
+      - name: online_retail_data
